@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;cin>>t;
+    while(t--){
+        int n,k;cin>>n>>k;
+        int a[n];for (int i=0; i<n ;i++) cin>>a[i];
+        int dp[k+1][n];
+        for (int i=0;i<n;i++) dp[1][i]=1;
+        for (int i=2;i<=k;i++){
+            for (int j=i-1;j<n;j++){
+                for(int z=i-2;z<j;z++){
+                    if (a[z]<a[j]) dp[i][j]+=dp[i][z];
+                }
+            }
+        }
+        cout<<dp[k][n-1]<<endl;
+    }
+	return 0;
+}
